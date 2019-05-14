@@ -1,6 +1,122 @@
 #!/usr/bin/env php
 <?php
 
+error_reporting(E_ALL);
+ini_set("display_errors", 1);
+
+require_once 'api/Okay.php';
+require_once 'reader/library/SimpleXMLReader.php';
+include_once('lib/Slugify.class.php');
+
+
+class ExampleXmlReader1 extends SimpleXMLReader
+{
+
+    public $items = array();
+    
+    public function __construct()
+    {                
+        $this->registerCallback("item", array($this, "callbackItems"));
+    }
+
+    protected function callbackItems($reader)
+    {
+        $xml = $reader->expandSimpleXml();
+        $attributes = $xml->attributes();
+	
+	$from = (array) $xml->from;
+	$to = (array) $xml->to;
+	$in = (array) $xml->in;
+	$out = (array) $xml->out;
+	$minamount = (array) $xml->minamount;
+	$maxamount = (array) $xml->maxamount;
+	$amount = (array) $xml->amount;
+	$param = (array) $xml->param;
+
+
+
+	$data = $this->items;
+
+	$data1['from'] = $from;
+            $data1['to'] = $to;
+            $data1['in'] = $in;
+            $data1['out'] = $out;
+            $data1['minamount'] = $minamount;
+            $data1['maxamount'] = $maxamount;
+            $data1['amount'] = $amount;
+            $data1['param'] = $param;
+
+            $data[] = $data1;
+            $this->items = $data;
+
+
+	//print_r($xml);
+
+
+     // exit;
+        return true;
+    }
+    
+}
+
+$file = 'valuta.xml';
+
+$files1 = array(
+		'valuta.xml'
+		);
+
+
+$files = array(
+		'https://www.nixexchange.com/best.xml',
+		'https://ww-pay.com/export/xml',
+		'https://imexchanger.pro/export.xml',
+		'https://i-obmen.bz/request-exportxml.xml',
+		'https://magneticexchange.com/export.xml',
+		'https://kassa.cc/valuta.xml',
+		'https://365cash.co/bestchange.xml'
+		);
+echo "\n";
+
+foreach($files as $file)
+{
+
+$time_start = microtime(true);
+
+	$reader = new ExampleXmlReader1;
+	$reader->open($file);
+	$reader->parse();
+	echo "feed: ".$file."\n";
+	echo "Count Items: ".count($reader->items)."\n";
+
+$time_end = microtime(true);
+$exec_time = $time_end-$time_start;
+
+	echo "Exec Time: ".$exec_time." seconds\n";
+	echo "\n";
+}
+
+//$reader->open('https://www.nixexchange.com/best.xml');
+//$reader->open('https://ww-pay.com/export/xml');
+
+//$reader->open('https://imexchanger.pro/export.xml');
+//$reader->open('https://i-obmen.bz/request-exportxml.xml');
+//$reader->open('https://magneticexchange.com/export.xml');
+//$reader->open('https://kassa.cc/valuta.xml');
+
+
+$reader->open('http://sportdream.loc/valuta.xml');
+$reader->parse();
+
+//echo count($reader->items);
+
+
+//print_r($reader->items);
+//echo "Start import";
+
+
+
+
+exit;
 require_once('lib/import/Import.php');
 
 
@@ -110,3 +226,4 @@ $import->send("Inserted all products : $k");
  */
 $reader->close();
 $import->send("End import");  
+
