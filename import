@@ -70,7 +70,7 @@ $files = array(
 		'https://www.nixexchange.com/best.xml',
 		'https://ww-pay.com/export/xml',
 		'https://imexchanger.pro/export.xml',
-		'https://i-obmen.bz/request-exportxml.xml',
+//		'https://i-obmen.bz/request-exportxml.xml',
 		'https://magneticexchange.com/export.xml',
 		'https://kassa.cc/valuta.xml',
 //		'https://365cash.co/bestchange.xml'
