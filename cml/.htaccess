@@ -1,0 +1,5 @@
+#AddType application/octet-stream csv
+#AuthName "OkayCMS 1C"
+#AuthType Basic
+#AuthUserFile /home/sportdre/public_html/cml/.passwd
+#require valid-user
