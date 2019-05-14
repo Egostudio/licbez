@@ -59,7 +59,7 @@ class ExampleXmlReader1 extends SimpleXMLReader
     
 }
 
-$file = 'valuta.xml';
+//$file = 'valuta.xml';
 
 $files1 = array(
 		'valuta.xml'
@@ -73,7 +73,7 @@ $files = array(
 		'https://i-obmen.bz/request-exportxml.xml',
 		'https://magneticexchange.com/export.xml',
 		'https://kassa.cc/valuta.xml',
-		'https://365cash.co/bestchange.xml'
+//		'https://365cash.co/bestchange.xml'
 		);
 echo "\n";
 
@@ -94,6 +94,8 @@ $exec_time = $time_end-$time_start;
 	echo "Exec Time: ".$exec_time." seconds\n";
 	echo "\n";
 }
+
+exit;
 
 //$reader->open('https://www.nixexchange.com/best.xml');
 //$reader->open('https://ww-pay.com/export/xml');
