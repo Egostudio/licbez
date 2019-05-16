@@ -74,6 +74,15 @@ $files = array(
 		'https://magneticexchange.com/export.xml',
 		'https://kassa.cc/valuta.xml',
 //		'https://365cash.co/bestchange.xml'
+
+		
+		'https://365cash.co/bestchange.xml',
+		'https://c1k.world/exportxmlbest',
+		'https://www.nixexchange.com/best.xml',
+		'https://24bestex.com/request-exportxml.xml',
+		'https://hotexchange.ru/request-exportxml.xml',
+		'https://bit-exchanger.ru/export.xml',
+		'https://7money.co/utils/export?type=xml',
 		);
 echo "\n";
 
