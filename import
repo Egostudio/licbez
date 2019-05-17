@@ -34,7 +34,6 @@ class ExampleXmlReader1 extends SimpleXMLReader
 	$param = (array) $xml->param;
 
 
-
 	$data = $this->items;
 
 	$data1['from'] = $from;
@@ -67,21 +66,22 @@ $files1 = array(
 
 
 $files = array(
-		'https://www.nixexchange.com/best.xml',
-		'https://ww-pay.com/export/xml',
-		'https://imexchanger.pro/export.xml',
-//		'https://i-obmen.bz/request-exportxml.xml',
-		'https://magneticexchange.com/export.xml',
-		'https://kassa.cc/valuta.xml',
-//		'https://365cash.co/bestchange.xml'
+//		'https://www.nixexchange.com/best.xml',
+//		'https://ww-pay.com/export/xml',
+//		'https://imexchanger.pro/export.xml',
+//		'https://magneticexchange.com/export.xml',
+//		'https://kassa.cc/valuta.xml',
+//		'https://c1k.world/exportxmlbest',
+//		'https://www.nixexchange.com/best.xml',
+//		'https://24bestex.com/request-exportxml.xml',
+//		'https://hotexchange.ru/request-exportxml.xml',
+//		'https://7money.co/utils/export?type=xml',
 
-		
-		'https://c1k.world/exportxmlbest',
-		'https://www.nixexchange.com/best.xml',
-		'https://24bestex.com/request-exportxml.xml',
-		'https://hotexchange.ru/request-exportxml.xml',
+//		'https://i-obmen.bz/request-exportxml.xml',
 //		'https://bit-exchanger.ru/export.xml',
-		'https://7money.co/utils/export?type=xml',
+//		'https://365cash.co/bestchange.xml'
+		'test.xml'
+
 		);
 echo "\n";
 
@@ -103,6 +103,21 @@ $exec_time = $time_end-$time_start;
 	echo "\n";
 }
 
+exit;
+
+$z = new XMLReader;
+$z->open('https://bit-exchanger.ru/export.xml');
+$doc = new DOMDocument;
+while ($z->read() && $z->name !== 'item');
+
+while ($z->name === 'item')
+{
+	echo 1;
+    $node = simplexml_import_dom($doc->importNode($z->expand(), true));
+
+    var_dump($node->from);
+    $z->next('item');
+}
 exit;
 
 //$reader->open('https://www.nixexchange.com/best.xml');
